@@ -16,9 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    notes = notesService.notes;
-    print(notes.length);
+    getNotes();
     super.initState();
+  }
+
+  void getNotes() {
+    setState(() {
+      notes = notesService.notes;
+    });
   }
 
   void navigateToDetail(Note note, int index) {
@@ -37,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => AddScreen(),
+        builder: (context) => AddScreen(
+          noteAdded: getNotes,
+        ),
       ),
     );
   }

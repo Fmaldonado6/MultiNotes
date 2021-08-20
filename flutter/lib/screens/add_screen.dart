@@ -3,7 +3,10 @@ import 'package:multi_notes/models/models.dart';
 import 'package:multi_notes/services/notes_service.dart';
 
 class AddScreen extends StatefulWidget {
-  const AddScreen({Key? key}) : super(key: key);
+  
+  final VoidCallback noteAdded;
+
+  const AddScreen({Key? key,required this.noteAdded}) : super(key: key);
 
   @override
   _AddScreenState createState() => _AddScreenState();
@@ -20,6 +23,8 @@ class _AddScreenState extends State<AddScreen> {
         description: description,
       ),
     );
+    Navigator.pop(context);
+    widget.noteAdded();
   }
 
   @override
