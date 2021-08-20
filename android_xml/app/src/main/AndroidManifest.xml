@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiNotes">
         <activity
-            android:name=".activities.add.AddActivity"
-            android:label="@string/add_notes_title"
+            android:name=".activities.detail.DetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".activities.add.AddActivity"
+            android:exported="true"
+            android:label="@string/add_notes_title" />
         <activity
             android:name=".activities.main.MainActivity"
             android:exported="true">

@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/drawable/outline_button.xml" value="0.190625" />
+        <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/drawable/red_ripple.xml" value="0.190625" />
         <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/drawable/ripple.xml" value="0.20729166666666668" />
         <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/layout/activity_add.xml" value="0.33" />
+        <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/layout/empty_layout.xml" value="0.75" />
         <entry key="..\:/Escritorio/Programacion/Otros/multi_notes/android_xml/app/src/main/res/layout/note_item.xml" value="0.5" />

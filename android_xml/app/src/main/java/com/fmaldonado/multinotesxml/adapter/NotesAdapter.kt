@@ -1,11 +1,14 @@
 package com.fmaldonado.multinotesxml.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.fmaldonado.multinotesxml.activities.detail.DetailActivity
 import com.fmaldonado.multinotesxml.databinding.NoteItemBinding
 import com.fmaldonado.multinotesxml.models.Note
+import com.fmaldonado.multinotesxml.models.ParcelableKeys
 
 class NotesAdapter(private val notes: List<Note>) :
     RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
@@ -20,8 +23,13 @@ class NotesAdapter(private val notes: List<Note>) :
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
-        Log.d("NOTE", note.title)
         holder.binding.noteTitle.text = note.title
+        holder.binding.noteItem.setOnClickListener {
+            val intent = Intent(holder.binding.root.context, DetailActivity::class.java)
+            intent.putExtra(ParcelableKeys.Note.value, note)
+            intent.putExtra(ParcelableKeys.NoteIndex.value, position)
+            holder.binding.root.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = notes.size

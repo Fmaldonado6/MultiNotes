@@ -1,5 +1,6 @@
 package com.fmaldonado.multinotesxml.activities.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,11 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupRecycler(list: List<Note>) {
         if (!::notesAdapter.isInitialized) {
             notesAdapter = NotesAdapter(list)
             binding.recyclerView.adapter = notesAdapter
         } else
-            notesAdapter.notifyItemInserted(list.size - 1)
+            notesAdapter.notifyDataSetChanged()
     }
 }
