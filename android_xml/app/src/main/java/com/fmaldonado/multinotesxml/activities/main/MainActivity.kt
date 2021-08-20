@@ -1,9 +1,12 @@
 package com.fmaldonado.multinotesxml.activities.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.fmaldonado.multinotesxml.R
+import com.fmaldonado.multinotesxml.activities.add.AddActivity
 import com.fmaldonado.multinotesxml.adapter.NotesAdapter
 import com.fmaldonado.multinotesxml.databinding.ActivityMainBinding
 import com.fmaldonado.multinotesxml.models.Note
@@ -21,6 +24,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.floatingActionButton.setOnClickListener {
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.notes.observe(this, {
             setupRecycler(it)
             binding.notesLength = it.size
@@ -33,6 +41,6 @@ class MainActivity : AppCompatActivity() {
             notesAdapter = NotesAdapter(list)
             binding.recyclerView.adapter = notesAdapter
         } else
-            notesAdapter.notifyItemInserted(list.size)
+            notesAdapter.notifyItemInserted(list.size - 1)
     }
 }

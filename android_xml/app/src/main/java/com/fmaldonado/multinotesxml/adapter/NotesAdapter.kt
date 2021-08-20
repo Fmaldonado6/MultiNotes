@@ -1,12 +1,14 @@
 package com.fmaldonado.multinotesxml.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fmaldonado.multinotesxml.databinding.NoteItemBinding
 import com.fmaldonado.multinotesxml.models.Note
 
-class NotesAdapter(val notes: List<Note>) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class NotesAdapter(private val notes: List<Note>) :
+    RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -18,6 +20,7 @@ class NotesAdapter(val notes: List<Note>) : RecyclerView.Adapter<NotesAdapter.No
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
+        Log.d("NOTE", note.title)
         holder.binding.noteTitle.text = note.title
     }
 
