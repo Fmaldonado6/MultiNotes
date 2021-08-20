@@ -13,6 +13,15 @@ class _AddScreenState extends State<AddScreen> {
   String title = "";
   String description = "";
 
+  void addNote() {
+    notesService.addNote(
+      Note(
+        title: title,
+        description: description,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,16 +63,8 @@ class _AddScreenState extends State<AddScreen> {
             Container(
               width: double.maxFinite,
               child: OutlinedButton(
-                onPressed: title.isNotEmpty && description.isNotEmpty
-                    ? () {
-                        notesService.addNote(
-                          Note(
-                            title: title,
-                            description: description,
-                          ),
-                        );
-                      }
-                    : null,
+                onPressed:
+                    title.isNotEmpty && description.isNotEmpty ? addNote : null,
                 child: Text("ADD NOTE"),
               ),
             ),

@@ -33,6 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void navigateToAdd() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,14 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddScreen(),
-            ),
-          );
-        },
+        onPressed: navigateToAdd,
         child: Icon(
           Icons.add,
         ),
