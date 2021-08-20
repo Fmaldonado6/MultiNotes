@@ -6,13 +6,21 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Help
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.fmaldonado.multinotescompose.NavigationScreen
+import com.fmaldonado.multinotescompose.models.Note
 
 @Composable
-fun HomeScreen(vm: HomeScreenViewModel) {
+fun HomeScreen(vm: HomeScreenViewModel, navController: NavController) {
+
+    val notes by vm.notes.observeAsState(mutableListOf())
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -22,12 +30,17 @@ fun HomeScreen(vm: HomeScreenViewModel) {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = {
+                navController.navigate(NavigationScreen.AddScreen.screenName)
+            }) {
                 Icon(Icons.Default.Add, "Add note", tint = Color.White)
             }
         }
     ) {
-        EmptyScreen()
+        if (notes.isNotEmpty())
+            NoteList(notes)
+        else
+            EmptyScreen()
     }
 }
 
@@ -50,6 +63,6 @@ fun EmptyScreen() {
 }
 
 @Composable
-fun NoteList() {
+fun NoteList(notes: List<Note>) {
 
 }
