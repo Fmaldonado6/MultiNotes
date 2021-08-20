@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => DetailScreen(
           note: note,
           index: index,
+          noteDeleted: getNotes,
         ),
       ),
     );

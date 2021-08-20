@@ -5,8 +5,13 @@ import 'package:multi_notes/services/notes_service.dart';
 class DetailScreen extends StatelessWidget {
   final Note note;
   final int index;
-  const DetailScreen({Key? key, required this.note, required this.index})
-      : super(key: key);
+  final VoidCallback noteDeleted;
+  const DetailScreen({
+    Key? key,
+    required this.note,
+    required this.noteDeleted,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +66,14 @@ class DetailScreen extends StatelessWidget {
             onPressed: () {
               notesService.deleteNote(index);
               Navigator.popUntil(context, (route) => route.isFirst);
+              this.noteDeleted();
             },
             child: Text("DELETE"),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: Text("CANCEL"),
           ),
         ],
