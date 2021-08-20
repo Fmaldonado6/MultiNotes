@@ -1,6 +1,9 @@
 package com.fmaldonado.multinotescompose.screens.home
 
+import android.os.Bundle
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -15,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.fmaldonado.multinotescompose.NavigationScreen
 import com.fmaldonado.multinotescompose.models.Note
+import com.fmaldonado.multinotescompose.models.ParcelableKeys
 
 @Composable
 fun HomeScreen(vm: HomeScreenViewModel, navController: NavController) {
@@ -38,7 +42,13 @@ fun HomeScreen(vm: HomeScreenViewModel, navController: NavController) {
         }
     ) {
         if (notes.isNotEmpty())
-            NoteList(notes)
+            NoteList(notes, noteClicked = { note, index ->
+                navController.currentBackStackEntry?.arguments = Bundle().apply {
+                    putParcelable(ParcelableKeys.Note.name, note)
+                    putInt(ParcelableKeys.NoteIndex.name, index)
+                }
+                navController.navigate(NavigationScreen.DetailScreen.screenName)
+            })
         else
             EmptyScreen()
     }
@@ -63,6 +73,26 @@ fun EmptyScreen() {
 }
 
 @Composable
-fun NoteList(notes: List<Note>) {
-
+fun NoteList(
+    notes: List<Note>,
+    noteClicked: (Note, Int) -> Unit
+) {
+    LazyColumn(modifier = Modifier.padding(16.dp)) {
+        items(count = notes.size) { index ->
+            val note = notes[index]
+            Column(modifier = Modifier.clickable {
+                noteClicked(note, index)
+            }) {
+                Text(
+                    note.title,
+                    modifier = Modifier.padding(
+                        start = 10.dp,
+                        top = 15.dp,
+                        bottom = 15.dp
+                    )
+                )
+                Divider()
+            }
+        }
+    }
 }

@@ -16,6 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.fmaldonado.multinotescompose.screens.add.AddScreen
 import com.fmaldonado.multinotescompose.screens.add.AddScreenViewModel
+import com.fmaldonado.multinotescompose.screens.detail.DetailScreen
+import com.fmaldonado.multinotescompose.screens.detail.DetailScreenViewModel
 import com.fmaldonado.multinotescompose.screens.home.HomeScreen
 import com.fmaldonado.multinotescompose.screens.home.HomeScreenViewModel
 import com.fmaldonado.multinotescompose.ui.theme.MultiNotesTheme
@@ -62,6 +64,14 @@ class MainActivity : ComponentActivity() {
                     val viewModel: AddScreenViewModel by viewModels()
                     AddScreen(navController = navController, viewModel = viewModel)
                 }
+                composable(
+                    NavigationScreen.DetailScreen.screenName,
+                    enterTransition = { _, _ -> enterAnimation() },
+                    popExitTransition = { _, _ -> popExittAnimation() }
+                ) {
+                    val viewModel: DetailScreenViewModel by viewModels()
+                    DetailScreen(navController = navController, viewModel = viewModel)
+                }
             }
         )
     }
@@ -98,5 +108,6 @@ class MainActivity : ComponentActivity() {
 
 enum class NavigationScreen(val screenName: String) {
     HomeScreen("home"),
-    AddScreen("add")
+    AddScreen("add"),
+    DetailScreen("detail")
 }
