@@ -1,4 +1,4 @@
-package com.example.multi_notes
+package com.fmaldonado.multi_notes
 
 import io.flutter.embedding.android.FlutterActivity
 

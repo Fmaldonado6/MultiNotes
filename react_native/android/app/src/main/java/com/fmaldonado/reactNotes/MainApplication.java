@@ -1,4 +1,4 @@
-package com.firstapp;
+package com.fmaldonado.reactNotes;
 
 import android.app.Application;
 import android.content.Context;

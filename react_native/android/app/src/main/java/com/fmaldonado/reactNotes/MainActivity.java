@@ -1,4 +1,4 @@
-package com.firstapp;
+package com.fmaldonado.reactNotes;
 
 import com.facebook.react.ReactActivity;
 
