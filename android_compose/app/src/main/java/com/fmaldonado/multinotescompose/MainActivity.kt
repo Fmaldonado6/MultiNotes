@@ -7,10 +7,13 @@ import androidx.activity.viewModels
 import androidx.compose.animation.*
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
@@ -33,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MultiNotesTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface(color = MaterialTheme.colors.primary) {
                     Navigation()
                 }
             }
@@ -59,7 +62,7 @@ class MainActivity : ComponentActivity() {
                 composable(
                     NavigationScreen.AddScreen.screenName,
                     enterTransition = { _, _ -> enterAnimation() },
-                    popExitTransition = { _, _ -> popExittAnimation() }
+                    popExitTransition = { _, _ -> popExitAnimation() }
                 ) {
                     val viewModel: AddScreenViewModel by viewModels()
                     AddScreen(navController = navController, viewModel = viewModel)
@@ -67,7 +70,7 @@ class MainActivity : ComponentActivity() {
                 composable(
                     NavigationScreen.DetailScreen.screenName,
                     enterTransition = { _, _ -> enterAnimation() },
-                    popExitTransition = { _, _ -> popExittAnimation() }
+                    popExitTransition = { _, _ -> popExitAnimation() }
                 ) {
                     val viewModel: DetailScreenViewModel by viewModels()
                     DetailScreen(navController = navController, viewModel = viewModel)
@@ -80,7 +83,7 @@ class MainActivity : ComponentActivity() {
     fun enterAnimation(): EnterTransition {
         return slideInVertically(
             initialOffsetY = { 300 },
-            animationSpec = tween(300, easing = FastOutSlowInEasing)
+            animationSpec = tween(300)
         ) + fadeIn(animationSpec = tween(300))
     }
 
@@ -90,7 +93,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @ExperimentalAnimationApi
-    fun popExittAnimation(): ExitTransition {
+    fun popExitAnimation(): ExitTransition {
         return slideOutVertically(
             animationSpec = tween(300),
             targetOffsetY = { 300 }) + fadeOut(
